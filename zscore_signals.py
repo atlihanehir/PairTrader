@@ -95,9 +95,9 @@ def get_latest_signal(df):
     latest_zscore = df['zscore'].iloc[-1]
     latest_date = df.index[-1]
     
-    signal_text = {1: "🔵 LONG (Buy spread, sell hedge)", 
-                   -1: "🔴 SHORT (Sell spread, buy hedge)",
-                   0: "⚪ NO POSITION / CLOSE"}
+    signal_text = {1: " LONG (Buy spread, sell hedge)", 
+                   -1: " SHORT (Sell spread, buy hedge)",
+                   0: " NO POSITION / CLOSE"}
     
     print(f"\n{'='*40}")
     print(f"LATEST SIGNAL - {latest_date.date()}")
