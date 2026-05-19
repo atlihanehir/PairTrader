@@ -112,7 +112,7 @@ Git
 Step 1: Clone the Repository
 
 bash
-git clone https://github.com/yourusername/PairTrader.git
+git clone https://github.com/atlihanehir/PairTrader.git
 cd PairTrader
 Step 2: Install Dependencies
 
