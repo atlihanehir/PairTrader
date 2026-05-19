@@ -6,7 +6,7 @@ Built with Python, this bot implements a market-neutral pairs trading strategy o
 
 ---
 
-## 📊 Performance Summary
+##  Performance Summary
 
 | Metric | Value | Interpretation |
 |--------|-------|----------------|
@@ -27,7 +27,7 @@ Built with Python, this bot implements a market-neutral pairs trading strategy o
 
 ---
 
-## 🎯 What Problem Does This Solve?
+##  What Problem Does This Solve?
 
 Traditional stock investing is **directional** – you lose money when the market goes down. 
 
@@ -47,7 +47,7 @@ Traditional stock investing is **directional** – you lose money when the marke
 
 ---
 
-## 🚀 Core Features
+##  Core Features
 
 ### Trading Features
 | Feature | Description |
@@ -69,7 +69,7 @@ Traditional stock investing is **directional** – you lose money when the marke
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 | Technology | Purpose |
 |------------|---------|
@@ -83,4 +83,172 @@ Traditional stock investing is **directional** – you lose money when the marke
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
+
+text
+PairTrader/
+│
+├── config.py                 # Configuration parameters
+├── data_fetcher.py           # Yahoo Finance API wrapper
+├── spread_calculator.py      # Spread calculations
+├── cointegration_test.py     # ADF statistical validation
+├── zscore_signals.py         # Z-score & trading signal logic
+├── backtest_engine.py        # Complete backtest with position sizing
+├── requirements.txt          # Python dependencies
+├── README.md                 # Documentation
+│
+├── data/                     # CSV storage
+│   └── stock_prices.csv
+│
+└── outputs/                  # Generated charts
+    └── backtest_results.png
+##  Installation
+
+Prerequisites
+
+Python 3.9+
+pip package manager
+Git
+Step 1: Clone the Repository
+
+bash
+git clone https://github.com/yourusername/PairTrader.git
+cd PairTrader
+Step 2: Install Dependencies
+
+bash
+pip install -r requirements.txt
+Step 3: Configure Parameters (Optional)
+
+Edit config.py to change:
+
+Stock tickers (default: KO, PEP)
+Date range for backtest
+Z-score entry/exit thresholds
+Initial capital amount
+Position sizing percentage
+## Usage Guide
+
+Fetch Latest Stock Data
+
+bash
+python3 data_fetcher.py
+Test Cointegration (Validate the Pair)
+
+bash
+python3 cointegration_test.py
+Generate Trading Signals
+
+bash
+python3 zscore_signals.py
+Run Complete Backtest
+
+bash
+python3 backtest_engine.py
+## Sample Output
+
+Backtest Results (Console)
+
+text
+============================================================
+BACKTEST RESULTS - DETAILED REPORT
+============================================================
+Initial Capital:     $10,000.00
+Final Value:         $15,783.22
+Total Return:        57.83%
+Annualized Return:   25.71%
+------------------------------------------------------------
+Number of Trades:    18
+Win Rate:            66.7%
+Sharpe Ratio:        0.70
+Max Drawdown:        -62.87%
+============================================================
+Charts Generated
+
+The backtest produces a 3-panel figure saved to outputs/backtest_results.png:
+
+Top Panel: Spread between KO and PEP with mean line
+Middle Panel: Z-score with entry (±2), exit (±0.5), and stop-loss (±3) thresholds
+Bottom Panel: Portfolio value over time with initial capital reference
+## Strategy Logic Explained
+
+Step 1: Cointegration Test (ADF)
+
+Tests if KO and PEP move together over time. Required: p-value < 0.05.
+
+Step 2: Spread Calculation
+
+text
+spread = Price(KO) - Price(PEP)
+Step 3: Z-Score Calculation (60-day rolling window)
+
+text
+z-score = (current_spread - mean_spread) / std_spread
+Step 4: Trading Rules
+
+Condition	Action
+z-score < -2.0	LONG (buy spread, sell hedge)
+z-score > +2.0	SHORT (sell spread, buy hedge)
+z-score returns to ±0.5	CLOSE position
+z-score > ±3.0	STOP LOSS (emergency exit)
+Step 5: Position Sizing
+
+Each trade uses 10% of available capital. Stop-loss at ±3σ.
+
+## Performance Analysis
+
+Why 57.83% Return?
+
+12 winning trades vs 6 losing trades
+Average winner: +$2,086.74
+Average loser: -$3,209.62
+Strategy works due to high win rate (66.7%)
+Risk Considerations
+
+Risk Factor	Impact	Mitigation
+Max Drawdown -62.87%	High	Reduce position sizing to 5%
+Cointegration Breakdown	High	Re-test cointegration weekly
+## Future Improvements
+
+Add transaction costs (commission + slippage)
+Add more stock pairs (AAPL/MSFT, JPM/BAC, XOM/CVX)
+Create Streamlit web dashboard
+Add real-time paper trading with Alpaca API
+## Troubleshooting
+
+Issue	Solution
+ModuleNotFoundError	Run pip install -r requirements.txt
+Yahoo Finance no data	Check internet; change END_DATE to recent date
+No signals generated	Check cointegration; widen thresholds to ±1.5
+## Author
+
+Your Name
+Pace University, New York
+Computer Science Major + Finance Minor
+Class of 2028
+Target: NYC Quant / S&T / Software Engineering Internships Summer 2027
+
+## Project Timeline
+
+Phase	Duration	Status
+Data Fetcher Module	Week 1	✅
+Spread & Cointegration	Week 2	✅
+Z-Score & Signals	Week 2	✅
+Backtest Engine	Week 3	✅
+Documentation & GitHub	Week 4	✅
+## License
+
+MIT License - Free for academic and personal use.
+
+## Acknowledgments
+
+Yahoo Finance for free market data via yfinance
+StatsModels for ADF implementation
+QuantConnect for pairs trading strategy inspiration
+## Contact
+
+Platform	Link
+GitHub	github.com/atlihanehir
+LinkedIn	linkedin.com/in/nehir-atlihan
+Email	na89143n@pace.edu
+
