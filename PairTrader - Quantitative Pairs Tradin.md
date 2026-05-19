@@ -231,11 +231,11 @@ Target: NYC Quant / S&T / Software Engineering Internships Summer 2027
 ## Project Timeline
 
 Phase	Duration	Status
-Data Fetcher Module	Week 1	✅
-Spread & Cointegration	Week 2	✅
-Z-Score & Signals	Week 2	✅
-Backtest Engine	Week 3	✅
-Documentation & GitHub	Week 4	✅
+Data Fetcher Module	Week 1	
+Spread & Cointegration	Week 2	
+Z-Score & Signals	Week 2	
+Backtest Engine	Week 3	
+Documentation & GitHub	Week 4	
 ## License
 
 MIT License - Free for academic and personal use.
